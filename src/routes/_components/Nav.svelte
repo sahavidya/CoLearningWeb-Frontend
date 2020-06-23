@@ -6,7 +6,7 @@
 
 <nav class="navbar navbar-light">
 	<div class="container">
-		<a rel='prefetch' class="navbar-brand" href=".">conduit</a>
+		<a rel='prefetch' class="navbar-brand" href=".">Learning Web</a>
 		<ul class="nav navbar-nav pull-xs-right">
 			<li class="nav-item">
 				<a rel='prefetch' class="nav-link" class:active="{$page.path === '/'}" href="/">Home</a>
@@ -41,6 +41,12 @@
 				<li class="nav-item">
 					<a rel='prefetch' href="/register" class="nav-link" class:active="{$page.path === '/register'}">
 						Sign up
+					</a>
+				</li>
+
+				<li class="nav-item">
+					<a rel='prefetch' href="/update-user" class="nav-link" class:active="{$page.path === '/update-user'}">
+						Update User
 					</a>
 				</li>
 			{/if}

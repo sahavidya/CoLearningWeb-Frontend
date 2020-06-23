@@ -59,7 +59,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Conduit</title>
+    <title>Learning Web</title>
     <!-- Import Ionicon icons & Google Fonts our Bootstrap theme relies on -->
     <link href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Titillium+Web:700|Source+Serif+Pro:400,700|Merriweather+Sans:400,700|Source+Sans+Pro:400,300,600,700,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
@@ -100,7 +100,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 ```html
     <footer>
       <div class="container">
-        <a href="/" class="logo-font">conduit</a>
+        <a href="/" class="logo-font">Learning Web</a>
         <span class="attribution">
           An interactive learning project from <a href="https://thinkster.io">Thinkster</a>. Code &amp; design licensed under MIT.
         </span>
@@ -119,7 +119,7 @@ Alternatively, if you want to make modifications to the theme, check out the [th
 
   <div class="banner">
     <div class="container">
-      <h1 class="logo-font">conduit</h1>
+      <h1 class="logo-font">Learning Web</h1>
       <p>A place to share your knowledge.</p>
     </div>
   </div>

@@ -8,7 +8,14 @@
 	let username = '';
 	let email = '';
 	let password = '';
+	let cnfpassword = '';
+	let learningArea = '';
+	let phoneNo = null;
 	let errors = null;
+	let isLearner = false;
+	let isGuide = false;
+	let isCoLearner = false;
+	let agreePolicy = false;
 
 	async function submit(event) {
 		const response = await post(`auth/register`, { username, email, password });
@@ -23,8 +30,35 @@
 	}
 </script>
 
+<style>
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	input[type=number] {
+		-moz-appearance: textfield;
+	}
+
+	input[type=checkbox] {
+		cursor: pointer;
+		margin: 2px;
+	}
+	label{
+		cursor: pointer;
+		font-size: 1.25rem;
+    	color: #55595c;
+	}
+	.policy-label{
+		padding-top: 20px;
+	}
+</style>
+
 <svelte:head>
-	<title>Sign up • Conduit</title>
+	<title>Sign up • Learning Web</title>
 </svelte:head>
 
 <div class="auth-page">
@@ -48,7 +82,40 @@
 					<fieldset class="form-group">
 						<input class="form-control form-control-lg" type="password" placeholder="Password" bind:value={password}>
 					</fieldset>
-					<button class="btn btn-lg btn-primary pull-xs-right">
+					<fieldset class="form-group">
+						<input class="form-control form-control-lg" type="password" placeholder="Confirm Password" bind:value={cnfpassword}>
+					</fieldset>
+					<fieldset class="form-group">
+						<input class="form-control form-control-lg" type="number" placeholder="Phone Number" bind:value={phoneNo}>
+					</fieldset>
+					<fieldset>
+						<div class="row">
+							<div class="col-xs-4">
+								<label class="form-check-label">
+									<input type=checkbox bind:checked={isLearner}> Learning
+								</label>
+							</div>
+							<div class="col-xs-4">
+								<label class="form-check-label">
+									<input type=checkbox bind:checked={isGuide}> Guiding
+								</label>
+							</div>
+							<div class="col-xs-4">
+								<label class="form-check-label">
+									<input type=checkbox bind:checked={isCoLearner}> Co-Learner
+								</label>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset class="form-group">
+						<input class="form-control form-control-lg" type="text" placeholder="Area of Learning" bind:value={learningArea}>
+					</fieldset>
+					<fieldset>
+						<label class="form-check-label policy-label">
+							<input type=checkbox bind:checked={agreePolicy}> I agree the policies and privacies of the system.
+						</label>
+					</fieldset>
+					<button disabled={!agreePolicy} class="btn btn-lg btn-primary pull-xs-right">
 						Sign up
 					</button>
 				</form>
