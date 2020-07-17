@@ -25,7 +25,7 @@
     let connectionOptions = [
         { id : 1, text: 'Private account'},
         { id : 2, text: 'Public account'}
-    ]
+    ];
     let emailPrivacy;
     let phoneNumberPrivacy;
     let whatsAppNumberPrivacy;
@@ -61,7 +61,6 @@
 
 <svelte:head>
 	<title>Update User</title>
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </svelte:head>
 
 <div class="update-user-page">

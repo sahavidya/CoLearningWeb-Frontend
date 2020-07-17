@@ -49,6 +49,12 @@
 						Update User
 					</a>
 				</li>
+
+				<li class="nav-item">
+					<a rel='prefetch' href="/learning-interests" class="nav-link" class:active="{$page.path === '/learning-interests'}">
+						Learning Interests
+					</a>
+				</li>
 			{/if}
 		</ul>
 	</div>

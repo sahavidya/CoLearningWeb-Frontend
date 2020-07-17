@@ -1,9 +1,8 @@
 <script>
-    export let updateValue;
+    export let updateValue = "";
     export let iconClass = "";
     export let descText = "";
     export let inputType = "text";
-    console.log(inputType, descText);
 </script>
 
 <div class="row">

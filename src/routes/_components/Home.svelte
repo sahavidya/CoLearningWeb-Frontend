@@ -1,45 +1,98 @@
 <script>
-	import { onMount } from 'svelte';
-	import MainView from './MainView/index.svelte';
-	import Tags from './Tags.svelte';
-	import * as api from 'api.js';
-
-	export let p = 1;
-
-	let tab;
-	let tag;
-	let tags;
-
-	function setTags({ detail }) {
-		tag = detail.tag;
-		tab = "tag";
+	import SearchList from './SearchList.svelte';
+	let searchText = '';
+	const peopleList = [
+		{
+			name:'Jhon Smith',
+			profileImage: 'images/temp.jpg',
+			isGuide: true,
+			isCoLearner: false,
+			aoe: ["Economics", "Machine Learning"],
+			isNewSuggestion: true,
+		},
+		{
+			name:'Julie Joe',
+			profileImage: 'images/temp.jpg',
+			isGuide: true,
+			isCoLearner: false,
+			aoe: ["Python Language", "C++"],
+			isNewSuggestion: false,
+		},
+		{
+			name:'Neha Jain',
+			profileImage: 'images/temp.jpg',
+			isGuide: false,
+			isCoLearner: true,
+			aoe: ["Classical Music", "Pop Music"],
+			isNewSuggestion: false,
+		},
+	];	
+	function onClose(index) {
+		peopleList.splice(index, 1);
+		peopleList = peopleList;
 	}
-
-	onMount(async () => {
-		({ tags } = await api.get('tags'));
-	});
+	
 </script>
+
+<style>
+.full-width{
+	width: 100%;
+}
+.divider-grey{
+	width: 100%;
+	padding: 0.2rem;
+    border-bottom: solid 4px #d3d3d3;
+}
+.suggestions-text{
+	color: #7ed5b7;
+}
+.help-text{
+	font-size: 1.2rem
+}
+.no-margin{
+	margin: 0;
+}
+.help-text-container{
+	padding-top: 10px;
+}
+</style>
 
 <svelte:head>
 	<title>Learning Web</title>
 </svelte:head>
 
 <div class="home-page">
-	<div class="banner">
-		<div class="container">
-			<h1 class="logo-font">Learning Web</h1>
-			<p>A place to share your knowledge.</p>
-		</div>
-	</div>
-
 	<div class="container page">
 		<div class="row">
-			<MainView {p} {tag} bind:tab />
-
-			<div class="col-md-3">
-				<div class="sidebar">
-					<p>Popular Tags</p>
-					<Tags {tags} on:select='{setTags}' />
+			<div class="col-md-8 offset-md-2 col-xs-12">
+				<div class="input-group">
+					<div class="input-group-btn">
+					<button class="btn btn-default" type="submit">
+						<ion-icon name="search-outline"></ion-icon>
+					</button>
+					</div>
+					<input type="text" class="form-control" placeholder="Search for the topic you wish to learn" bind:value={searchText}>
+				</div>
+				<hr />
+				<div class="row">
+					<div class="col-md-6">
+						<button type="button" class="btn full-width">View recieved requests</button>
+					</div>
+					<div class="col-md-6">
+						<button type="button" class="btn full-width">View sent requests</button>
+					</div>
+				</div>
+				<div class="divider-grey"></div>
+				<p class="no-margin help-text-container">
+					<ion-icon name="globe-outline"></ion-icon>
+					<span class="help-text">People you may find helpful.</span>
+				</p>
+				<p class="no-margin suggestions-text">Suggestions are based upon learning interests.</p>
+				<div class="divider-grey"></div>
+				<div class="search-list-container">
+					{#each peopleList as list, i}
+						<SearchList listData={list} onDismiss={onClose} index={i} />
+					{/each}
 				</div>
 			</div>
 		</div>
