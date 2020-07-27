@@ -88,9 +88,6 @@
         color: cadetblue;
         font-weight: 700;
     }
-    .topic-text{
-        color: #a9a9a9;
-    }
     .orange-text{
         color: #ffaa3c;
     }
@@ -121,21 +118,18 @@
                         </div>
                     </fieldset>
                     <p class="desc-text grey-text">Let us know your learning interests:</p>
-                    <p class="desc-text topic-text">High priority learning topics:</p>
                     <fieldset class="form-group">
                         <div class="row">
                             <div class="col-sm-6"><input class="form-control form-control-md input-desc" disabled={!isLearner} type="text" bind:value={highPriorityLearning1}></div>
                             <div class="col-sm-6"><input class="form-control form-control-md input-desc" disabled={!isLearner} type="text" bind:value={highPriorityLearning2}></div>
                         </div>
                     </fieldset>
-                    <p class="desc-text topic-text">Medium priority learning topics:</p>
                     <fieldset class="form-group">
                         <div class="row">
                             <div class="col-sm-6"><input class="form-control form-control-md input-desc" disabled={!isLearner} type="text" bind:value={mediumPriorityLearning1}></div>
                             <div class="col-sm-6"><input class="form-control form-control-md input-desc" disabled={!isLearner} type="text" bind:value={mediumPriorityLearning2}></div>
                         </div>
                     </fieldset>
-                    <p class="desc-text topic-text">Low priority learning topic:</p>
                     <fieldset class="form-group">
                         <div class="row">
                             <div class="col-sm-6"><input class="form-control form-control-md input-desc" disabled={!isLearner} type="text" bind:value={lowPriorityLearning}></div>

@@ -10,6 +10,7 @@
 	let password = '';
 	let cnfpassword = '';
 	let learningArea = '';
+	let expertiseArea = '';
 	let phoneNo = null;
 	let errors = null;
 	let isLearner = false;
@@ -18,7 +19,10 @@
 	let agreePolicy = false;
 
 	async function submit(event) {
-		const response = await post(`auth/register`, { username, email, password });
+		const response = await post(`http://localhost:8000/register`, 
+			{"username":"11111122","password":"123456", "email": "s22sts@test.com", "terms_and_conditions_checked": true,
+  "need_mentoring": true,
+  "available_to_mentor": true, "need_colearner": true, "skill_to_guide": "Machine learning", "skill_to_learn": "Communication skills", "gender": "male"});
 
 		// TODO handle network errors
 		errors = response.errors;
@@ -74,7 +78,7 @@
 
 				<form on:submit|preventDefault={submit}>
 					<fieldset class="form-group">
-						<input class="form-control form-control-lg" type="text" placeholder="Your Name" bind:value={username}>
+						<input class="form-control form-control-lg" type="text" placeholder="User Name" bind:value={username}>
 					</fieldset>
 					<fieldset class="form-group">
 						<input class="form-control form-control-lg" type="text" placeholder="Email" bind:value={email}>
@@ -107,9 +111,16 @@
 							</div>
 						</div>
 					</fieldset>
-					<fieldset class="form-group">
-						<input class="form-control form-control-lg" type="text" placeholder="Area of Learning" bind:value={learningArea}>
-					</fieldset>
+					{#if isLearner}
+						<fieldset class="form-group">
+							<input class="form-control form-control-lg" type="text" placeholder="Area of Learning" bind:value={learningArea}>
+						</fieldset>
+					{/if}
+					{#if isGuide}
+						<fieldset class="form-group">
+							<input class="form-control form-control-lg" type="text" placeholder="Area of Expertise" bind:value={expertiseArea}>
+						</fieldset>
+					{/if}
 					<fieldset>
 						<label class="form-check-label policy-label">
 							<input type=checkbox bind:checked={agreePolicy}> I agree the policies and privacies of the system.
