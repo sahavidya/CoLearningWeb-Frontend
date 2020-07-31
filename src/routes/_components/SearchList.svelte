@@ -2,6 +2,7 @@
     export let listData;
     export let onDismiss;
     export let index;
+    export let selection;
 </script>
 
 <style>
@@ -46,9 +47,20 @@
 .no-display{
     display: none;
 }
+.selection-checkbox{
+    position: relative;
+    top: 40%;
+}
+.details-container{
+    text-align: right;
+    width: 90%;
+}
 </style>
 
 <div class="search-list row">
+    <div class="col-sm-1">
+        <input type="checkbox" class="form-check-input selection-checkbox" bind:group={selection} value={index} />
+    </div>
     <div class="image-container col-sm-2">
         <img src={listData.profileImage} class="img-circle" alt="Profile" width="80" height="80">
         <div class="user-type">
@@ -56,7 +68,7 @@
             <span class={`co-learner-span ${(listData.isCoLearner) ? '' : 'no-display'}`}>Co-Learner</span>
         </div>
     </div>
-    <div class="desc-container col-sm-10">
+    <div class="desc-container col-sm-9">
         <div class="name-container">
             <span class="name">{listData.name}</span>
             <span class={`is-new-suggestion ${(listData.isNewSuggestion) ? '' : 'no-display'}`}>New Suggestion</span>
@@ -68,6 +80,9 @@
                     <div>{(i+1)}. {extertise}</div>
                 {/each}
             </div>
+        </div>
+        <div class="details-container">
+            <button type="button" class="btn btn-info btn-sm">Details</button>
         </div>
     </div>
     <div class="remove">

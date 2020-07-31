@@ -1,6 +1,7 @@
 <script>
 	import SearchList from './SearchList.svelte';
 	let searchText = '';
+	let selection = [];
 	const peopleList = [
 		{
 			name:'Jhon Smith',
@@ -55,6 +56,12 @@
 .help-text-container{
 	padding-top: 10px;
 }
+.send-request-container{
+	text-align: center;
+}
+.send-requests{
+	width: 50%;
+}
 </style>
 
 <svelte:head>
@@ -91,8 +98,11 @@
 				<div class="divider-grey"></div>
 				<div class="search-list-container">
 					{#each peopleList as list, i}
-						<SearchList listData={list} onDismiss={onClose} index={i} />
+						<SearchList listData={list} onDismiss={onClose} index={i} selection={selection} />
 					{/each}
+				</div>
+				<div class="send-request-container">
+					<button type="button" class="btn btn-primary send-requests">Send Requests</button>
 				</div>
 			</div>
 		</div>
