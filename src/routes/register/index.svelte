@@ -19,17 +19,38 @@
 	let agreePolicy = false;
 
 	async function submit(event) {
-		const response = await post(`http://localhost:8000/register`, 
-			{"username":"11111122","password":"123456", "email": "s22sts@test.com", "terms_and_conditions_checked": true,
-  "need_mentoring": true,
-  "available_to_mentor": true, "need_colearner": true, "skill_to_guide": "Machine learning", "skill_to_learn": "Communication skills", "gender": "male"});
+		const response = await post(
+			`http://localhost:8000/register`, 
+			{
+				"username": username,
+				"password": password,
+				"email": email,
+				"terms_and_conditions_checked": agreePolicy,
+				"need_mentoring": isLearner,
+				"available_to_mentor": isGuide,
+				"need_colearner": isCoLearner,
+				"skill_to_guide": expertiseArea,
+				"skill_to_learn": learningArea,
+				"gender": "not-set"
+			}
+			// {
+			// 	"username": "11ds1s1",
+			// 	"password": "123456",
+			// 	"email": "ssdsfs@test.com",
+			// 	"terms_and_conditions_checked": true,
+			// 	"need_mentoring": true,
+			// 	"available_to_mentor": true,
+			// 	"need_colearner": true,
+			// 	"skill_to_guide": "Machine learning",
+			// 	"skill_to_learn": "Communication skills",
+			// 	"gender": "male"
+			// }
+		);
 
-		// TODO handle network errors
 		errors = response.errors;
-
-		if (response.user) {
-			$session.user = response.user;
-			goto('/');
+		if(response.message) {
+			console.log('response ', response.message);
+			goto('../login/');
 		}
 	}
 </script>
