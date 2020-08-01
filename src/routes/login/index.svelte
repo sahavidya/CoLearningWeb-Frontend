@@ -22,7 +22,8 @@
     if (response.errors != undefined) {
       errors = response.errors;
     } else {
-      goto("/login/success");
+      $session.user = response.user;
+      goto('/Home');
     }
   }
 </script>

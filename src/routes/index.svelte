@@ -1,5 +1,5 @@
 <script>
-	import Home from './_components/Home.svelte';
+	import Home from './login/index.svelte';
 </script>
 
 <Home p={1}/>

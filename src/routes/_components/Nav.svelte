@@ -2,33 +2,35 @@
 	import { stores } from '@sapper/app';
 
 	const { page, session } = stores();
+
+	async function logout() {
+		// await post(`auth/logout`);
+		$session.user = null;
+		goto('/');
+	}
 </script>
 
 <nav class="navbar navbar-light">
 	<div class="container">
 		<a rel='prefetch' class="navbar-brand" href=".">Learning Web</a>
 		<ul class="nav navbar-nav pull-xs-right">
-			<li class="nav-item">
-				<a rel='prefetch' class="nav-link" class:active="{$page.path === '/'}" href="/">Home</a>
-			</li>
-
 			{#if $session.user}
 				<li class="nav-item">
-					<a rel='prefetch' href="/editor" class="nav-link" class:active="{$page.path === '/editor'}">
-						<i class="ion-compose"></i>&nbsp;New Post
+					<a rel='prefetch' class="nav-link" class:active="{$page.path === '/'}" href="/">Home</a>
+				</li>
+				<li class="nav-item">
+					<a rel='prefetch' href="/update-user" class="nav-link" class:active="{$page.path === '/update-user'}">
+						Update User
 					</a>
 				</li>
-
 				<li class="nav-item">
-					<a rel='prefetch' href="/settings" class="nav-link" class:active="{$page.path === '/settings'}">
-						<i class="ion-gear-a"></i>&nbsp;Settings
+					<a rel='prefetch' href="/learning-interests" class="nav-link" class:active="{$page.path === '/learning-interests'}">
+						Learning Interests
 					</a>
 				</li>
-
 				<li class="nav-item">
-					<a rel='prefetch' href='/profile/@{$session.user.username}' class="nav-link">
-						<!-- <img src={$user.image} class="user-pic" alt={$user.username}> -->
-						{$session.user.username}
+					<a rel='prefetch' href="#" class="nav-link" on:click={logout}>
+						Log Out
 					</a>
 				</li>
 			{:else}
@@ -41,18 +43,6 @@
 				<li class="nav-item">
 					<a rel='prefetch' href="/register" class="nav-link" class:active="{$page.path === '/register'}">
 						Sign up
-					</a>
-				</li>
-
-				<li class="nav-item">
-					<a rel='prefetch' href="/update-user" class="nav-link" class:active="{$page.path === '/update-user'}">
-						Update User
-					</a>
-				</li>
-
-				<li class="nav-item">
-					<a rel='prefetch' href="/learning-interests" class="nav-link" class:active="{$page.path === '/learning-interests'}">
-						Learning Interests
 					</a>
 				</li>
 			{/if}
