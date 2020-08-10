@@ -99,7 +99,7 @@
           <fieldset class="form-group">
             <input
               class="form-control form-control-lg"
-              type="text"
+              type="email"
               placeholder="Email"
               bind:value={email} />
           </fieldset>
