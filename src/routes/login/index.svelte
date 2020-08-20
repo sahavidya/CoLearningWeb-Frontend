@@ -10,7 +10,7 @@
   let errors = null;
 
   async function submit(event) {
-    const response = await post(`http://localhost:3100/login`, {
+    const response = await post(`http://localhost:3100/api/login`, {
       username: username,
       password: password
     });

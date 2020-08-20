@@ -21,26 +21,27 @@
 
 	async function submit(event) {
 		const response = await post(
-			`http://localhost:3100/register`, 
+			`http://localhost:3100/api/register`, 
 			{
 				username: username,
 				password: password,
-				email: email,
-				terms_and_conditions_checked: agreePolicy,
-				need_mentoring: isLearner,
-				available_to_mentor: isGuide,
+        email: email,
+        available_to_mentor: isGuide,
+        need_mentoring: isLearner,
 				need_colearner: isCoLearner,
+				terms_and_conditions_checked: agreePolicy,
+				gender:"male",
 				skill_to_guide: guidingArea,
-				skill_to_learn: learningArea,
+        skill_to_learn: learningArea,
 				phonenumber: phoneNo
 			}
 		);
-
+    console.log(response);
 		// TODO handle network errors
 		if (response.errors != undefined) {
 			errors = response.errors;
 		} else {
-			goto("/register/success");
+			goto("/login");
 		}
 	}
 </script>

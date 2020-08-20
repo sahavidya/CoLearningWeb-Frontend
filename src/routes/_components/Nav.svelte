@@ -29,7 +29,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a rel='prefetch' href="#" class="nav-link" on:click={logout}>
+					<a rel='prefetch' href="/login" class="nav-link" on:click={logout}>
 						Log Out
 					</a>
 				</li>

@@ -59,30 +59,33 @@
 
 <div class="search-list row">
     <div class="col-sm-1">
-        <input type="checkbox" class="form-check-input selection-checkbox" bind:group={selection} value={index} />
+        <!-- <input type="checkbox" class="form-check-input selection-checkbox" bind:group={selection} value={index} /> -->
     </div>
     <div class="image-container col-sm-2">
-        <img src={listData.profileImage} class="img-circle" alt="Profile" width="80" height="80">
+        <img src="images/temp.jpg" class="img-circle" alt="Profile" width="80" height="80">
         <div class="user-type">
-            <span class={`guide-span ${(listData.isGuide) ? '' : 'no-display'}`}>Guide <span class="check-icon"><ion-icon name="checkmark-done-outline"></ion-icon></span></span>
-            <span class={`co-learner-span ${(listData.isCoLearner) ? '' : 'no-display'}`}>Co-Learner</span>
+            <span class={`guide-span ${(listData.isguide) ? '' : 'no-display'}`}>Guide <span class="check-icon"><ion-icon name="checkmark-done-outline"></ion-icon></span></span>
+            <span class={`co-learner-span ${(listData.iscolearner) ? '' : 'no-display'}`}>Co-Learner</span>
         </div>
     </div>
     <div class="desc-container col-sm-9">
         <div class="name-container">
-            <span class="name">{listData.name}</span>
+            <span class="name">{listData.firstname} {listData.lastname}</span>
             <span class={`is-new-suggestion ${(listData.isNewSuggestion) ? '' : 'no-display'}`}>New Suggestion</span>
         </div>
         <div class="aoe-container row">
             <div class="aoe-span col-xs-1">AOE:</div>
             <div class="col-xs-10">
-                {#each listData.aoe as extertise, i}
-                    <div>{(i+1)}. {extertise}</div>
+                {#each listData.Skills as extertise, i}
+                    <div>{(i+1)}. {extertise.skillname}</div>
                 {/each}
             </div>
         </div>
         <div class="details-container">
-            <button type="button" class="btn btn-info btn-sm">Details</button>
+            <a href="/request-connect?reqId={listData.username}">
+                <button type="button" class="btn btn-info btn-sm">Request to connect</button>
+            </a>
+            
         </div>
     </div>
     <div class="remove">

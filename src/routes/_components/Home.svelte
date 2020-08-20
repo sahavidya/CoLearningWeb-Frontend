@@ -1,38 +1,25 @@
 <script>
+	import { goto, stores } from "@sapper/app";
+	import * as api from 'api.js';
 	import SearchList from './SearchList.svelte';
+	
 	let searchText = '';
 	let selection = [];
-	const peopleList = [
-		{
-			name:'Jhon Smith',
-			profileImage: 'images/temp.jpg',
-			isGuide: true,
-			isCoLearner: false,
-			aoe: ["Economics", "Machine Learning"],
-			isNewSuggestion: true,
-		},
-		{
-			name:'Julie Joe',
-			profileImage: 'images/temp.jpg',
-			isGuide: true,
-			isCoLearner: false,
-			aoe: ["Python Language", "C++"],
-			isNewSuggestion: false,
-		},
-		{
-			name:'Neha Jain',
-			profileImage: 'images/temp.jpg',
-			isGuide: false,
-			isCoLearner: true,
-			aoe: ["Classical Music", "Pop Music"],
-			isNewSuggestion: false,
-		},
-	];	
+	const { session } = stores();
+	let peopleList = [];
+
 	function onClose(index) {
 		peopleList.splice(index, 1);
 		peopleList = peopleList;
 	}
-	
+	async function getData() {
+		console.log($session.user.access_token);
+		const userList = await api.get('users', $session.user.access_token);
+		console.log(userList);
+		peopleList = userList;
+	}
+	getData();
+
 </script>
 
 <style>
