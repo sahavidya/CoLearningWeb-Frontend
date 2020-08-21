@@ -1,10 +1,12 @@
 <script>
     import { stores } from "@sapper/app";
-    const { page } = stores();
+    import * as api from 'api.js';
+    const { session, page } = stores();
     let connectionAs;
     let timeCommitment;
     let personalNoteRequest = "";
     let skillFluency = 0;
+    let userData;
     console.log($page.query);
     const connectionOptions = [
         { id : 1, text: 'As a student'},
@@ -13,7 +15,13 @@
     async function submit(event) {
 
     }
-
+    async function getData() {
+		console.log($session.user.access_token);
+		const data = await api.get(`users/${$page.query}`, $session.user.access_token);
+		console.log(data);
+		userData = data;
+	}
+	getData();
 </script>
 
 <style>

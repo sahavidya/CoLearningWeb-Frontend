@@ -16,7 +16,7 @@
 		<ul class="nav navbar-nav pull-xs-right">
 			{#if $session.user}
 				<li class="nav-item">
-					<a rel='prefetch' class="nav-link" class:active="{$page.path === '/'}" href="/">Home</a>
+					<a rel='prefetch' class="nav-link" class:active="{$page.path === '/Home'}" href="/Home">Home</a>
 				</li>
 				<li class="nav-item">
 					<a rel='prefetch' href="/update-user" class="nav-link" class:active="{$page.path === '/update-user'}">
