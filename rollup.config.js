@@ -11,7 +11,7 @@ import css from 'rollup-plugin-css-only';
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
-const baseuri = 'http://localhost:3100/api';
+const baseuri = 'http://localhost:5000';
 
 const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && warning.message.includes('/@sapper/')) || onwarn(warning);
 
