@@ -1,8 +1,13 @@
 <script>
     import { onMount } from 'svelte';
+    import { goto, stores } from "@sapper/app";
     import ListErrors from '../_components/ListErrors.svelte';
     import CountriesList from '../_components/CountriesList.svelte';
     import UpdateField from '../_components/UpdateField.svelte'
+    import * as api from 'api.js';
+
+    const { session } = stores();
+
     let errors = null;
     let firstName = '';
     let lastName = '';
@@ -33,7 +38,15 @@
     function submit(event) {
         // console.log(firstName, ' firstName');
     }
+    
     onMount(()=> {
+        api.get(
+		"user",
+		$session.user.access_token
+		).then((user)=> {
+            firstName = user.name;
+            email = user.email;
+        })
         month = '' + (now.getMonth() + 1),
         day = '' + now.getDate(),
         year = now.getFullYear();

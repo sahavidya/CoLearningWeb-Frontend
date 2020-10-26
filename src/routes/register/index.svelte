@@ -23,7 +23,8 @@
   let lastname="";
   
 	async function submit(event) {
-		const response = await api.post(`register`, 
+    console.log("calling register");
+    const response = await api.post(`register`, 
 			{
         name: firstname + ' ' + lastname,
 				username: username,

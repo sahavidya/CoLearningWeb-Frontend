@@ -2,6 +2,7 @@
   import { goto, stores } from "@sapper/app";
   import ListErrors from "../_components/ListErrors.svelte";
   import { post } from "utils.js";
+  import * as api from 'api.js';
 
   const { session } = stores();
 
@@ -10,19 +11,18 @@
   let errors = null;
 
   async function submit(event) {
-    const response = await post(`http://localhost:3100/api/login`, {
+    const response = await api.post(`login`, {
       username: username,
       password: password
     });
 
     // TODO handle network errors
-    errors = response.errors;
-
-    // TODO handle network errors
-    if (response.errors != undefined) {
-      errors = response.errors;
+    if (response.message != undefined) {
+      errors = response.message;
+      console.log(errors);
     } else {
-      $session.user = response.user;
+      $session.user = response;
+      $session.username = username;
       goto('/Home');
     }
   }
