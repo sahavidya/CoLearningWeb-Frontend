@@ -11,32 +11,30 @@
     errors = 'Messages are displayed here';
 
 let userName; 
-    let interests;
+    let interests, interestsArr;
     let learningInterest1, learningInterest2; 
     let learningInterest3, learningInterest4;
-    let skills;
+    let skills, skillsArr;
     let expertiseDomain1, expertiseDomain2, expertiseDomain3, expertiseDomain4;
     let bio;
     let isLearner = true;
     let isGuide = true;
     
     function submit(event) {
-   
-       const response =  api.put("user", {
-      username: userName,
-         need_mentoring    : isLearner,
-         available_to_mentors    : isGuide,
-        skilss    : skills,
-    interestss    : interests,
-           bio: bio
-    },
-$session.user.access_token    
-    );
 
-   
-    errors = 'After Put Call';
+        interests = learningInterest1 + "|" +  learningInterest2 + "|" + learningInterest3 + "|" + learningInterest4;
+        skills = expertiseDomain1 + "|" + expertiseDomain2 + "|" + expertiseDomain3 + "|" + expertiseDomain4;
 
-   
+        const response =  api.put("user", {
+        need_mentoring: isLearner,
+        available_to_mentors: isGuide,
+        skills: skills,
+        interests: interests,
+        bio: bio
+        },
+        $session.user.access_token    
+        );
+        errors = 'Your changes have been updated';
     }
 
     // Load information related to  skills and interests
@@ -45,27 +43,28 @@ $session.user.access_token
 		"user",
 		$session.user.access_token
 		).then((user)=> {
-   userName= user.username;
-       isLearner= user.need_mentoring;
-    isGuide= user.available_to_mentor;
- skills= user.skills;
-    interests= user.interests;
-       bio= user.bio;
+        userName= user.username;
+        isLearner= user.need_mentoring;
+        isGuide= user.available_to_mentor;
+        skills= user.skills;
+        interests= user.interests;
+        bio= user.bio;
  
-    // Todo - Split skills and interests and assignt to seperate variables
-    learningInterest1= interests;
-    learningInterest2= interests;
-    learningInterest3= interests;
-    learningInterest4= interests;
+        // Todo - Split skills and interests and assignt to seperate variables
 
-  expertiseDomain1 = skills;
-   expertiseDomain2 = skills;
-    expertiseDomain3 = skills;
-        expertiseDomain4 = userName;
-      
-    
+        interestsArr = interests.split("|");
+        skillsArr = skills.split("|");
+
+        learningInterest1= interestsArr[0];
+        learningInterest2= interestsArr[1];
+        learningInterest3= interestsArr[2];
+        learningInterest4= interestsArr[3];
+
+        expertiseDomain1 = skillsArr[0];
+        expertiseDomain2 = skillsArr[1];
+        expertiseDomain3 = skillsArr[2];
+        expertiseDomain4 = skillsArr[3];
         })
-
 	})
 
 

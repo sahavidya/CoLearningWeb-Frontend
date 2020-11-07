@@ -148,10 +148,10 @@
         </p>
         <div class="divider-grey" />
         <div class="search-list-container">
-          {#each peopleList as list, i}
-		  	{#if list.Id != $session.user.userid}
+          {#each peopleList as user, i}
+		  	{#if user.username != $session.username}
             <SearchList
-              listData={list}
+              listData={user}
               onDismiss={onClose}
               index={i}
               {selection} />

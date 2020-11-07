@@ -1,8 +1,17 @@
 <script>
+    import { onMount } from 'svelte';
     export let listData;
     export let onDismiss;
     export let index;
     export let selection;
+    let skillsArr = [""];
+
+     onMount(()=> {
+         if(listData.skills!=undefined)
+         {
+            skillsArr = listData.skills.split("|");
+         }
+     })
 </script>
 
 <style>
@@ -64,20 +73,20 @@
     <div class="image-container col-sm-2">
         <img src="images/temp.jpg" class="img-circle" alt="Profile" width="80" height="80">
         <div class="user-type">
-            <span class={`guide-span ${(listData.isguide) ? '' : 'no-display'}`}>Guide <span class="check-icon"><ion-icon name="checkmark-done-outline"></ion-icon></span></span>
-            <span class={`co-learner-span ${(listData.iscolearner) ? '' : 'no-display'}`}>Co-Learner</span>
+            <span class={`guide-span ${(listData.available_to_mentor) ? '' : 'no-display'}`}>Guide <span class="check-icon"><ion-icon name="checkmark-done-outline"></ion-icon></span></span>
+            <span class={`co-learner-span ${(listData.is_available) ? '' : 'no-display'}`}>Co-Learner</span>
         </div>
     </div>
     <div class="desc-container col-sm-9">
         <div class="name-container">
-            <span class="name">{listData.firstname} {listData.lastname}</span>
-            <span class={`is-new-suggestion ${(listData.isNewSuggestion) ? '' : 'no-display'}`}>New Suggestion</span>
+            <span class="name">{listData.name}</span>
+            <!--<span class={`is-new-suggestion ${(listData.isNewSuggestion) ? '' : 'no-display'}`}>New Suggestion</span>-->
         </div>
         <div class="aoe-container row">
             <div class="aoe-span col-xs-1">AOE:</div>
             <div class="col-xs-10">
-                {#each listData.Skills as extertise, i}
-                    <div>{(i+1)}. {extertise.skillname}</div>
+                {#each skillsArr as expertise}
+                    <div>{expertise}</div>
                 {/each}
             </div>
         </div>
