@@ -22,7 +22,11 @@
     let birthDate;
     let gender;
     let occupation;
+    let organization;
     let files;
+    let telegramId; 
+    //telegram Id is connected to   slack user id
+    let socialMediaLinks ;
     let shareOptions = [
 		{ id: 1, text: `Share with connected learners` },
         { id: 2, text: `Don't share with anyone` }
@@ -31,9 +35,6 @@
         { id : 1, text: 'Private account'},
         { id : 2, text: 'Public account'}
     ];
-    let emailPrivacy;
-    let phoneNumberPrivacy;
-    let whatsAppNumberPrivacy;
     let connectionPrivacy;
     function submit(event) {
         // console.log(firstName, ' firstName');
@@ -46,6 +47,20 @@
 		).then((user)=> {
             firstName = user.name;
             email = user.email;
+            // todo connect after API changes phoneNumber= user.phonenumber;
+                // todo connect after API changes whatsAppNumber =user.whatsappnumber ;
+     country = '356';
+    city = user.location;
+    // todo After API changesbirthDate;
+    // After API Changes gender;
+    occupation=user.occupation;
+    organization = user.organization;
+    files =user.photo_url ;
+    telegramId= slack_username;
+    // After API changes  connectionPrivacy;
+socialMediaLinks =social_media_links;
+
+
         })
         month = '' + (now.getMonth() + 1),
         day = '' + now.getDate(),
@@ -110,13 +125,6 @@
                         />
                         <div class="row">
                             <div class="col-sm-6 offset-sm-6">
-                                <select class="form-control form-control-md" value={emailPrivacy}>
-                                    {#each shareOptions as option}
-                                        <option value={option}>
-                                            {option.text}
-                                        </option>
-                                    {/each}
-                                </select>   
                             </div>
                         </div>
                     </fieldset>
@@ -129,13 +137,6 @@
                         />
                         <div class="row">
                             <div class="col-sm-6 offset-sm-6">
-                                <select class="form-control form-control-md" value={phoneNumberPrivacy}>
-                                    {#each shareOptions as option}
-                                        <option value={option}>
-                                            {option.text}
-                                        </option>
-                                    {/each}
-                                </select>   
                             </div>
                         </div>
                     </fieldset>
@@ -148,13 +149,6 @@
                         />
                         <div class="row">
                             <div class="col-sm-6 offset-sm-6">
-                                <select class="form-control form-control-md" value={whatsAppNumberPrivacy}>
-                                    {#each shareOptions as option}
-                                        <option value={option}>
-                                            {option.text}
-                                        </option>
-                                    {/each}
-                                </select>   
                             </div>
                         </div>
                     </fieldset>
