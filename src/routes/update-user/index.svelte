@@ -9,15 +9,20 @@
     const { session } = stores();
 
     let errors = null;
+    errors = 'Messages are displayed here';
+
+
     let firstName = '';
     let lastName = '';
+    let fullName = '';
+    let fullNameArr;
     let email = '';
     let phoneNumber;
     let whatsAppNumber;
     let country = '356';
     let state;
     let city;
-    let language1, language2, language3;
+    let preferredLanguages,preferredLanguagesArr,  language1, language2, language3;
     let now = new Date(), month, day, year;
     let birthDate;
     let gender;
@@ -37,7 +42,23 @@
     ];
     let connectionPrivacy;
     function submit(event) {
-        // console.log(firstName, ' firstName');
+         console.log( ' Update Called');
+        preferredLanguages = language1 + "|" +  language2 + "|" + language3;
+        fullName= firstName          + " " +  lastName; 
+// todo add update for phonenr,whatsnr,language,country after api changes
+        const response =  api.put("user", {
+        name: fullName,
+     location: city,
+        occupation  : occupation,
+        organization: organization,
+slack_username: telegramId,
+social_media_links:socialMediaLinks 
+        },
+        $session.user.access_token    
+        );
+        errors = 'Your changes have been updated';
+
+
     }
     
     onMount(()=> {
@@ -45,7 +66,7 @@
 		"user",
 		$session.user.access_token
 		).then((user)=> {
-            firstName = user.name;
+            fullName = user.name;
             email = user.email;
             // todo connect after API changes phoneNumber= user.phonenumber;
                 // todo connect after API changes whatsAppNumber =user.whatsappnumber ;
@@ -56,11 +77,23 @@
     occupation=user.occupation;
     organization = user.organization;
     files =user.photo_url ;
-    telegramId= slack_username;
+    telegramId= user.slack_username;
     // After API changes  connectionPrivacy;
-socialMediaLinks =social_media_links;
+socialMediaLinks =user.social_media_links;
+preferredLanguages=user.language;
 
+console.log(fullName);
+        fullNameArr = fullName.split(" ");
+        
+        firstName= fullNameArr[0]       ;
+        lastName= fullNameArr[1];
 
+        preferredLanguagesArr = preferredLanguages.split("|");
+
+        language1 = preferredLanguagesArr[0];
+        language2 = preferredLanguagesArr[1];
+        language3 = preferredLanguagesArr[2];
+        
         })
         month = '' + (now.getMonth() + 1),
         day = '' + now.getDate(),
@@ -152,6 +185,16 @@ socialMediaLinks =social_media_links;
                             </div>
                         </div>
                     </fieldset>
+
+                                       <fieldset class="form-group">
+                        <UpdateField
+                            bind:updateValue={telegramId}
+                            iconClass="person-outline"
+                            descText="Telegram User ID"
+                            inputType="text"
+                        />
+                    </fieldset>
+ 
                     <fieldset class="form-group">
                         <div class="row">
                             <div class="col-sm-4">
@@ -251,6 +294,17 @@ socialMediaLinks =social_media_links;
                             inputType="text"
                         />
                     </fieldset>
+<fieldset class="form-group">
+                        <UpdateField
+                            bind:updateValue={organization}
+                            iconClass="briefcase-outline"
+                            descText="Organization"
+                            inputType="text"
+                        />
+                    </fieldset>
+                    
+
+
                     <fieldset class="form-group">
                         <div class="row">
                             <div class="col-sm-6">
