@@ -21,8 +21,17 @@
       errors = response.message;
       console.log(errors);
     } else {
+
+      
+
       $session.user = response;
       $session.username = username;
+      console.log("Access token:" +  $session.user.access_token);
+      const userresponse = await api.get('user', $session.user.access_token);
+
+      $session.userid = userresponse.id;
+      console.log("User id of logged in user is:" + $session.userid);
+
       goto('/Home');
     }
   }

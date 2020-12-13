@@ -90,11 +90,10 @@
                 {/each}
             </div>
         </div>
-        <div class="details-container">
-            <a href="/request-connect?reqId={listData.username}">
-                <button type="button" class="btn btn-info btn-sm">Request to connect</button>
+       <div class="details-container">
+            <a href="/mentor-profile?mentorId={listData.id}">
+                <button type="button" class="btn btn-info btn-sm">View Profile</button>
             </a>
-            
         </div>
     </div>
     <div class="remove">
