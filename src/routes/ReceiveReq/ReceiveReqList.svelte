@@ -4,9 +4,23 @@ export let listData;
 export let displayMode;
 
 //date conversion
-let creationDate = new Date (Date.parse(listData.creation_date));
+//let creationDate = new Date (Date.parse(listData.creation_date));
+let creationDate = format_time(listData.creation_date);
+
+
+function format_time(s) {
+  const dtFormat = new Intl.DateTimeFormat('en-GB', {
+    dateStyle: 'medium',  
+    timeStyle: 'medium',
+    timeZone: 'UTC'
+  });
+  
+  return dtFormat.format(new Date(s * 1e3));
+}
+
+
 console.log(creationDate);
-let creationDateFormatted = creationDate.toDateString();
+let creationDateFormatted = creationDate;//.toDateString();
 
 </script>
 
@@ -20,7 +34,7 @@ let creationDateFormatted = creationDate.toDateString();
 	width: 100%;
 }
 .aoe-span{
-	color: orange;1
+	color: orange;
     font-weight: 600;
 }
 
@@ -42,7 +56,7 @@ let creationDateFormatted = creationDate.toDateString();
         <div class="container row">
             <div class="aoe-span col-sm-4">Skill to learn:</div>
             <div class="name-container col-sm-8">
-                    {(listData.skillname)}
+                    {(listData.notes.split("|")[0])}
             </div>
         </div>
         <div class="container-row">

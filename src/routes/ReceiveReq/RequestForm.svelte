@@ -27,6 +27,8 @@ export let menteeDetails;
 let acceptText;
 let declineText;
 
+console.log("Mentee Details:" + menteeDetails);
+
 const { session } = stores();
 
  async function submit(event) {
@@ -48,10 +50,8 @@ const { session } = stores();
 		console.log("Command:" + command);
 		console.log("Learning Connection Id:" + learningConnectionRequest.id);
 		
-		const response = await api.put(`learning_connection/${learningConnectionRequest.id}/${command}`,
-		{
-			"notes": notes
-		}, $session.user.access_token );
+		const response = await api.put(`mentorship_relation/${learningConnectionRequest.id}/${command}`,{},
+		$session.user.access_token );
 
 	goto('/Connection');
 	console.log('submit clicked');
@@ -63,34 +63,34 @@ const { session } = stores();
 	
 	{#if learningConnectionRequest !== undefined}
 	<fieldset>
-	<p class="text-warning">{learningConnectionRequest.mentee.name} wants to learn {learningConnectionRequest.skillname} from you:</p>
+	<p class="text-warning">{learningConnectionRequest.mentee.name} wants to learn {learningConnectionRequest.notes} from you:</p>
 		<table class="table">		
 		<tbody>
 			<tr>
 				<td>Learning Domain:</td>
-				<td>{learningConnectionRequest.skillname}</td>
+				<td>{learningConnectionRequest.notes}</td>
 			</tr>
 			<tr>
 				<td>Connection:</td>
-				<td>{learningConnectionRequest.connectionType}</td>
+				<td>{learningConnectionRequest.notes}</td>
 			</tr>
 			<tr>
 				<td>Communication Languages:</td>
-				<td>{menteeDetails.languages}</td>
+				<!--<td>{menteeDetails.languages}</td>--> <!--//TBD-->
 				<!--<td>{communicationLanguages}</td>user model-->
 			</tr>
 			<tr>
 				<td>Current City:</td>
-				<td>{menteeDetails.city}</td>
+				<td>{menteeDetails.location}</td>
 				<!--<td>{currentCity}</td>user model-->
 			</tr>
 			<tr>
-				<td>fluency in {learningConnectionRequest.skillname}:</td>
-				<td>{learningConnectionRequest.skillfluency}</td>
+				<td>fluency in {learningConnectionRequest.notes}:</td>
+				<td>{learningConnectionRequest.notes}</td>
 			</tr>
 			<tr>
-				<td>Time {learningConnectionRequest.mentee.name} can spend to learn {learningConnectionRequest.skillname}:</td>
-				<td>{learningConnectionRequest.timecommitment}</td> 
+				<td>Time {learningConnectionRequest.mentee.name} can spend to learn {learningConnectionRequest.notes}:</td>
+				<td>{learningConnectionRequest.notes}</td> 
 			</tr>
 			<tr>
 				<td>{learningConnectionRequest.mentee.name} preferred mode of communication:</td>
@@ -99,7 +99,7 @@ const { session } = stores();
 			</tr>
 			<tr>
 				<td>Message from {learningConnectionRequest.mentee.name}:</td>
-				<td>{learningConnectionRequest.notesrequest}</td>
+				<td>{learningConnectionRequest.notes}</td>
 			</tr>
 		</tbody>
   		</table>

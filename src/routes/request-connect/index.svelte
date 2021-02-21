@@ -53,7 +53,7 @@ export async function preload({ query }) {
 		 {
             "mentor_id": userData.id,
             "mentee_id": $session.userid,
-            "end_date": 1612051200, // TBD : end date is UNIX TIME STAMP and has been hardcoded to 31/Jan/2021
+            "end_date": 1617235199, // TBD : end date is UNIX TIME STAMP and has been hardcoded to 31/Jan/2021
             "notes": notes,
 		 }, $session.user.access_token );
 

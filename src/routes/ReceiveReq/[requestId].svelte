@@ -32,13 +32,20 @@ const { session } = stores();
 console.log("On Page Load");
 console.log(requestId);
 onMount(() => {    
-		api.get(`learning_connections/${requestId}`,$session.user.access_token).then((resLearningConnection) => {
-        console.log(resLearningConnection);
-		api.get(`users/${resLearningConnection.mentee.id}`,$session.user.access_token).then((resUser)=>{
+		api.get(`mentorship_relations/pending`,$session.user.access_token).then((resLearningConnection) => {
+		console.log(resLearningConnection);
+		learningConnectionRequest = resLearningConnection.filter(conn => conn.id == requestId)[0];
+
+		console.log("Learning Connection Request Details:--")
+		console.log(learningConnectionRequest);
+
+		menteeDetails={"location":"Pune"}; //TBD - location has been hardcoded because of async issue
+
+		/*api.get(`users/${learningConnectionRequest.mentee.id}`,$session.user.access_token).then((resUser)=>{
 			console.log(resUser);
 			menteeDetails = resUser;
-			learningConnectionRequest = resLearningConnection;
-		});
+			
+		});*/
 	});
 });
 	

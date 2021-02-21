@@ -29,9 +29,10 @@ polka()
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
 		sapper.middleware({
-			session: req => ({
-				user: req.session && req.session.user
-			})
+			session: (req, res) => {
+				res.setHeader('cache-control', 'no-cache, no-store')
+				return { user: req.session && req.session.user }
+			}
 		})
 	)
 	.listen(PORT, err => {
